@@ -5,51 +5,76 @@ import java.util.Scanner;
 public class FoodTruckApp {
 
 	public static void main(String[] args) {
-		boolean trucks = true;
-		int choice;
+		String foodName;
+		String truckName;
+		int rating = 0;
 		Scanner kb = new Scanner(System.in);
-		FoodTruck ft = new FoodTruck();
+		FoodTruck[] foodTruckArr = new FoodTruck[5];
 
-		while (trucks) {
-		System.out.println("Please enter the food truck name.");
-		ft.truckName = kb.nextLine();
-		if (ft.truckName.equals("Quit")) {
-			System.out.println("You've chosen to quit.");
+		for (int truck = 0; truck <= 5; truck++) {
+			System.out.println("Please enter the food truck name.");
+			truckName = kb.next();
+
+			if (truckName.equalsIgnoreCase("Quit")) {
+				System.out.println("You've chosen to quit.");
 				break;
+			}
+			System.out.println("Please enter the type of food.");
+			foodName = kb.next();
+
+			System.out.println("Please give a rating between 1 - 5.");
+			rating = kb.nextInt();
+
+			FoodTruck ft = new FoodTruck(truckName, foodName, rating);
+			foodTruckArr[truck] = ft;
+			
 		}
-		System.out.println("Please enter the type of food.");
-		ft.foodType = kb.nextLine();
+		
+		FoodTruckApp app = new FoodTruckApp();
+		app.Menu(foodTruckArr, kb);
+	}
+		
 
-		System.out.println("Please give a rating between 1 - 5.");
-		ft.numericRating = kb.nextInt();
-
-		}
-
-		while (trucks) {
-
-			ft.printMenu();
+	public void Menu(FoodTruck[] foodTruckArr, Scanner kb )	{
+			while(true) {
+			System.out.println();
+			System.out.println("========= MENU =========");
+			System.out.println("|                      |");
+			System.out.println("|   1. All food trucks |");
+			System.out.println("|   2. Average rating  |");
+			System.out.println("|   3. Highest rated   |");
+			System.out.println("|   4. Exit            |");
+			System.out.println("|                      |");
+			System.out.println("========================");
+			System.out.println();
+			
 			System.out.print("Which would you like to do? ");
-			choice = kb.nextInt();
+			
+			int choice = kb.nextInt();
 
 			switch (choice) {
 
-			case 1:
-				ft.displayCar();
+			case 1:for (int truck = 0; truck <=5; truck++) {
+				if (foodTruckArr[truck] == null) {
+					break;
+				} else {
+					System.out.println(foodTruckArr[truck]);
+				}
+			}
 
-				break;
+			break;
 			case 2:
-				System.out.println(ft.foodType);
+			
 				break;
 			case 3:
-				System.out.println(ft.numericRating);
+				
 
 				break;
 			case 4:
 				System.out.print("You chosen to quit");
 				return;
 
-			}
-
-		}
+			}		
 	}
+}
 }

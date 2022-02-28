@@ -6,16 +6,18 @@ public class FoodTruck {
 	public int numericRating;
 	public String truckName;
 	public String foodType;
-	public static int nextNumericId = 5;
+	public static int nextNumericId = 0;
 
 	public FoodTruck() {
 	}
 
-	public FoodTruck(String truckName, String foodType, int numericRating, int numericId) {
+	public FoodTruck(String truckName, String foodType, int numericRating) {
 		this.truckName = truckName;
 		this.foodType = foodType;
 		this.numericRating = numericRating;
-		this.numericId = numericId;
+		this.numericId = nextNumericId;
+		nextNumericId++;
+
 	}
 
 	public String gettruckName() {
@@ -46,17 +48,12 @@ public class FoodTruck {
 		return numericId;
 	}
 
-	public void setnumericId(int truckID) {
-		this.numericId = numericId + nextNumericId;
+	public void setnumericId(int numericId) {
+		this.numericId = numericId;
 	}
 
 	public static int getNumericId() {
 		return nextNumericId;
-	}
-
-	public static void setnextNumericId(int nextNumericId) {
-		FoodTruck.nextNumericId = nextNumericId;
-		nextNumericId++;
 	}
 
 	public String toString() {
@@ -72,17 +69,4 @@ public class FoodTruck {
 		System.out.println(carData);
 	}
 
-	public void printMenu() {
-		System.out.println();
-		System.out.println("========= MENU =========");
-		System.out.println("|                      |");
-		System.out.println("|   1. All food trucks |");
-		System.out.println("|   2. Average rating  |");
-		System.out.println("|   3. Highest rated   |");
-		System.out.println("|   4. Exit            |");
-		System.out.println("|                      |");
-		System.out.println("========================");
-		System.out.println();
-
-	}
 }

@@ -27,16 +27,15 @@ public class FoodTruckApp {
 
 			FoodTruck ft = new FoodTruck(truckName, foodName, rating);
 			foodTruckArr[truck] = ft;
-			
+
 		}
-		
+
 		FoodTruckApp app = new FoodTruckApp();
 		app.Menu(foodTruckArr, kb);
 	}
-		
 
-	public void Menu(FoodTruck[] foodTruckArr, Scanner kb )	{
-			while(true) {
+	public void Menu(FoodTruck[] foodTruckArr, Scanner kb) {
+		while (true) {
 			System.out.println();
 			System.out.println("========= MENU =========");
 			System.out.println("|                      |");
@@ -47,34 +46,62 @@ public class FoodTruckApp {
 			System.out.println("|                      |");
 			System.out.println("========================");
 			System.out.println();
-			
+
 			System.out.print("Which would you like to do? ");
-			
+
 			int choice = kb.nextInt();
 
 			switch (choice) {
 
-			case 1:for (int truck = 0; truck <=5; truck++) {
-				if (foodTruckArr[truck] == null) {
-					break;
-				} else {
-					System.out.println(foodTruckArr[truck]);
-				}
-			}
+			case 1:
+				for (int truck = 0; truck <= 5; truck++) {
+					if (foodTruckArr[truck] == null) {
+						break;
+					}
 
-			break;
+					else {
+						System.out.println(foodTruckArr[truck]);
+					}
+				}
+
+				break;
 			case 2:
-			
+				int sum = 0;
+				int count = 0;
+				double average = 0.0;
+				for (int truck = 0; truck <= 5; truck++) {
+					if (foodTruckArr[truck] == null) {
+						break;
+					}
+
+					else {
+						sum += foodTruckArr[truck].getnumericRating();
+						count++;
+					}
+					average = sum / count;
+				}
+				System.out.println("Average rating is: " + average);
+
 				break;
 			case 3:
-				
+				int highest = 0;
+				int counter = 0;
+				for (int truck = 0; truck <= 5; truck++) {
+					if (foodTruckArr[truck] == null) {
+						break;
+					} else if (foodTruckArr[truck].getnumericRating() > highest) {
+						highest = (int)foodTruckArr[truck].getnumericRating();
+						counter = truck;
+					}
+					System.out.println(foodTruckArr[counter].toString());
+				}
 
 				break;
 			case 4:
 				System.out.print("You chosen to quit");
 				return;
 
-			}		
+			}
+		}
 	}
-}
 }

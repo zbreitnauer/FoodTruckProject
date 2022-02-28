@@ -2,11 +2,22 @@ package com.skilldistillery.foodtruck;
 
 public class FoodTruck {
 
-	public int numericId;
-	public int numericRating;
-	public String truckName;
-	public String foodType;
-	public static int nextNumericId = 0;
+	private int numericId;
+	private double numericRating;
+	private String truckName;
+	private String foodType;
+	private static int nextNumericId = 0;
+	
+	public String toString() {
+		String output = "Truck Name: " + truckName + ", Food Type: " + foodType + ", Truck Rating: " 
+				+ numericRating + ", Truck ID: " + numericId;
+		
+		return output;
+	}
+	public void displayCar() {
+		String carData = toString();
+		System.out.println(carData);
+	}
 
 	public FoodTruck() {
 	}
@@ -40,7 +51,7 @@ public class FoodTruck {
 		return numericRating;
 	}
 
-	public void setnumericRating(int numericRating) {
+	public void setnumericRating(double numericRating) {
 		this.numericRating = numericRating;
 	}
 
@@ -56,17 +67,6 @@ public class FoodTruck {
 		return nextNumericId;
 	}
 
-	public String toString() {
-		StringBuilder make = new StringBuilder();
-		make.append("Food Truck Name: ").append(truckName).append(", Food Type: ").append(foodType).append(", Rating: ")
-				.append(numericRating).append(", and truckID: ").append(numericId).append(".");
 
-		return make.toString();
-	}
-
-	public void displayCar() {
-		String carData = toString();
-		System.out.println(carData);
-	}
 
 }
